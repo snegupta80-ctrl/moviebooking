@@ -53,6 +53,38 @@ export const movieData = {
       cast: []
     }
   ],
+  bollywood: [
+    {
+      id: 6,
+      title: "Jawan: The Last Stand",
+      rating: "9.3",
+      poster: "/images/poster_action_1776418480363.png",
+      genre: "Bollywood / Action",
+      duration: "2h 45m",
+      description: "An emotional journey of a man driven by a personal vendetta to rectify the wrongs in society.",
+      cast: []
+    },
+    {
+      id: 7,
+      title: "Pathaan's Legacy",
+      rating: "8.8",
+      poster: "/images/poster_scifi_1776418462338.png",
+      genre: "Bollywood / Thriller",
+      duration: "2h 20m",
+      description: "A legendary spy races against time to stop an apocalyptic disaster.",
+      cast: []
+    },
+    {
+      id: 8,
+      title: "Brahmastra Part II",
+      rating: "8.5",
+      poster: "/images/poster_fantasy_1776418496974.png",
+      genre: "Bollywood / Fantasy",
+      duration: "2h 50m",
+      description: "The ancient weapons are gathering, and a new protector must rise.",
+      cast: []
+    }
+  ],
   hero: {
     id: 10,
     title: "ECHOES OF TOMORROW",
@@ -66,6 +98,6 @@ export const movieData = {
 
 // Helper for finding a movie by ID
 export const getMovieById = (id) => {
-  const allMovies = [...movieData.trending, ...movieData.popular, movieData.hero];
+  const allMovies = [...movieData.trending, ...movieData.popular, ...movieData.bollywood, movieData.hero];
   return allMovies.find(m => m.id === parseInt(id));
 };

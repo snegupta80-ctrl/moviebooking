@@ -8,7 +8,7 @@ function Payment() {
   const navigate = useNavigate();
   const [isSuccess, setIsSuccess] = useState(false);
   
-  const { movie, seats, total } = location.state || {};
+  const { movie, seats, total, date, time } = location.state || {};
 
   if (!movie) {
     return (
@@ -39,7 +39,7 @@ function Payment() {
             </div>
             <div className="detail-row">
               <span className="label">Time</span>
-              <span className="value">Today, 8:30 PM</span>
+              <span className="value">{date}, {time}</span>
             </div>
             <div className="detail-row">
               <span className="label">Amount Paid</span>
@@ -71,7 +71,7 @@ function Payment() {
           <img src={movie.poster} alt={movie.title} className="summary-poster" />
           <div className="summary-details">
             <h3>{movie.title}</h3>
-            <p className="summary-tags">English 3D • {movie.duration}</p>
+            <p className="summary-tags">{date} • {time}</p>
             <p className="seats-list">Seats: {seats.join(', ')}</p>
             <div className="summary-total">
               <span>Total Amount</span>

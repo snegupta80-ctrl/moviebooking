@@ -7,18 +7,26 @@ import './SeatSelection.css';
 const ROWS = 8;
 const COLS = 6;
 const SEAT_PRICE = 15;
+const DATES = ["Today, 17 Apr", "Tomorrow, 18 Apr", "Sun, 19 Apr", "Mon, 20 Apr"];
+const TIMES = ["10:30 AM", "12:15 PM", "4:45 PM", "8:30 PM", "11:00 PM"];
 
 function SeatSelection() {
   const { id } = useParams();
   const navigate = useNavigate();
   const movie = getMovieById(id);
   
+  const [selectedDate, setSelectedDate] = useState(DATES[0]);
+  const [selectedTime, setSelectedTime] = useState(TIMES[3]);
+
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [bookedSeats, setBookedSeats] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Randomly assign some booked seats for demo purposes
+  }, []);
+
+  // Re-roll booked seats when Time/Date changes to simulate different showtimes
+  useEffect(() => {
     const initialBooked = [];
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
@@ -28,7 +36,8 @@ function SeatSelection() {
       }
     }
     setBookedSeats(initialBooked);
-  }, []);
+    setSelectedSeats([]); // clear selections on time change
+  }, [selectedDate, selectedTime]);
 
   if (!movie) return null;
 
@@ -44,12 +53,13 @@ function SeatSelection() {
 
   const proceedToPayment = () => {
     if (selectedSeats.length === 0) return;
-    // navigate to payment and pass data via state
     navigate('/book/payment', { 
       state: { 
         movie, 
         seats: selectedSeats, 
-        total: selectedSeats.length * SEAT_PRICE 
+        total: selectedSeats.length * SEAT_PRICE,
+        date: selectedDate,
+        time: selectedTime
       } 
     });
   };
@@ -62,7 +72,24 @@ function SeatSelection() {
         </button>
         <div className="movie-summary-header">
           <h2>{movie.title}</h2>
-          <span>Today, 8:30 PM • English 3D</span>
+          <span>{selectedDate} • {selectedTime}</span>
+        </div>
+      </div>
+
+      <div className="datetime-selector">
+        <div className="scroll-chips date-scroll">
+          {DATES.map(d => (
+            <div key={d} className={`dt-chip ${selectedDate === d ? 'active' : ''}`} onClick={() => setSelectedDate(d)}>
+              {d.split(', ')[0]}<br/><span>{d.split(', ')[1]}</span>
+            </div>
+          ))}
+        </div>
+        <div className="scroll-chips time-scroll">
+          {TIMES.map(t => (
+            <div key={t} className={`dt-chip ${selectedTime === t ? 'active' : ''}`} onClick={() => setSelectedTime(t)}>
+              {t}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -115,10 +142,10 @@ function SeatSelection() {
       <div className={`bottom-booking-bar ${selectedSeats.length > 0 ? 'visible' : ''}`}>
         <div className="booking-info">
           <div className="seats-info">
-            <span className="label">Selected Seats</span>
-            <span className="value">{selectedSeats.length}</span>
+            <span className="label">Selected</span>
+            <span className="value">{selectedSeats.length > 0 ? selectedSeats.join(', ') : '0'}</span>
           </div>
-          <div className="price-info">
+          <div className="price-info text-right">
             <span className="label">Total Price</span>
             <span className="value">${selectedSeats.length * SEAT_PRICE}</span>
           </div>

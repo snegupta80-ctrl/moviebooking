@@ -2,6 +2,25 @@
   padding-bottom: 20px;
 }
 
+.home-quick-search {
+  padding: 16px 20px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.home-search {
+  background: rgba(10, 10, 15, 0.6) !important;
+}
+
+.home-search span {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
 .hero-section {
   position: relative;
   height: 65vh;
