@@ -7,7 +7,7 @@ import './Search.css';
 function Search() {
   const [query, setQuery] = useState('');
   
-  const allMovies = [...movieData.trending, ...movieData.popular];
+  const allMovies = [...movieData.trending, ...movieData.popular, ...movieData.bollywood];
   const filtered = query ? allMovies.filter(m => m.title.toLowerCase().includes(query.toLowerCase())) : allMovies;
 
   return (

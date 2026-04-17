@@ -1,6 +1,16 @@
 export const movieData = {
   trending: [
     {
+      id: 11,
+      title: "Spider-Man: No Way Home",
+      rating: "9.5",
+      poster: "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+      genre: "Action / Superhero",
+      duration: "2h 28m",
+      description: "Spider-Man's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk.",
+      cast: []
+    },
+    {
       id: 1,
       title: "Neon City",
       rating: "8.5",
@@ -82,6 +92,16 @@ export const movieData = {
       genre: "Bollywood / Fantasy",
       duration: "2h 50m",
       description: "The ancient weapons are gathering, and a new protector must rise.",
+      cast: []
+    },
+    {
+      id: 9,
+      title: "Dhurandhar",
+      rating: "9.2",
+      poster: "https://placehold.co/400x600/0A0A0F/E50914?text=Dhurandhar",
+      genre: "Bollywood / Drama",
+      duration: "2h 30m",
+      description: "A legendary hero rises from the ashes of betrayal to protect his people.",
       cast: []
     }
   ],
